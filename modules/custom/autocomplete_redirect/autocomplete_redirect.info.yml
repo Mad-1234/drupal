@@ -1,0 +1,10 @@
+# Auto Complete Redirect module definition file.
+# This file declares the module's metadata and dependencies.
+
+name: Auto Complete Redirect
+type: module
+core_version_requirement: ^9 || ^10 || ^11
+description: Provides autocomplete functionality and redirects users based on selected values.
+package: Custom
+dependencies:
+  - drupal:block # Requires the Block module for integration.

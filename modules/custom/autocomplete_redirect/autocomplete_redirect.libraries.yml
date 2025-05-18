@@ -1,0 +1,9 @@
+# Auto Complete Redirect module library definition file.
+# This file declares the JavaScript assets and dependencies for the module.
+
+auto_complete_redirect:
+  version: 1.x # Defines the version of the library.
+  js:
+    js/auto_complete_redirect.js: {} # Registers the JavaScript file.
+  dependencies:
+    - core/drupal # Ensures the library depends on the core Drupal functionality.

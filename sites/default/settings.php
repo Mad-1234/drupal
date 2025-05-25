@@ -872,11 +872,11 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 $databases['default']['default'] = array (
-  'database' => 'drupal_db',
-  'username' => 'drupal_user',
-  'password' => 'your_password',
+  'database' => 'drupal11',
+  'username' => 'admin',
+  'password' => '12345678',
   'prefix' => '',
-  'host' => 'localhost',
+  'host' => 'drupal11.c8jeck0ogbpx.us-east-1.rds.amazonaws.com',
   'port' => '3306',
   'isolation_level' => 'READ COMMITTED',
   'driver' => 'mysql',

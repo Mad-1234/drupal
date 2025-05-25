@@ -34,7 +34,7 @@ jobs:
             # drush sset system.maintenance_mode 1
             
             # Clear Drupal caches (using Drush – ensure Drush is installed)
-            drush cr
+            # drush cr
             
             # Optional: Run database updates
             # drush updb -y

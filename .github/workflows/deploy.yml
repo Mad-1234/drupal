@@ -1,0 +1,45 @@
+name: Deploy Drupal to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Drupal Site
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out your code from GitHub
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up SSH so that GitHub Actions can use your private key
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+      # Step 3: Synchronize repository files to the EC2 instance
+      - name: Rsync files to EC2
+        run: |
+          rsync -avz --delete ./ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ secrets.EC2_DEPLOY_PATH }}
+        
+      # Step 4: Run Drupal-specific commands on the remote server
+      - name: Run remote Drupal update commands
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            cd ${{ secrets.EC2_DEPLOY_PATH }}
+            # Optional: Put site into maintenance mode if needed
+            # drush sset system.maintenance_mode 1
+            
+            # Clear Drupal caches (using Drush – ensure Drush is installed)
+            drush cr
+            
+            # Optional: Run database updates
+            # drush updb -y
+            
+            # Optional: Exit maintenance mode
+            # drush sset system.maintenance_mode 0
+          EOF

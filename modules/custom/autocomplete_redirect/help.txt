@@ -1,2 +1,0 @@
-   - Go to adminstructureblock,
-   - Locate “Search Box Block” and place it in the desired region.
